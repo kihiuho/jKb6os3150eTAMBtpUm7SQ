@@ -11,7 +11,6 @@ let config = require('./../config');
 let Seed = require('./../lib/seed');
 let ExchangeRateHandler = require('./../lib/exchange_rate_handler');
 
-winston.log('debug');
 // Unit test on the Seed
 describe('Seed', function () {
 	let client;
@@ -148,7 +147,7 @@ describe('Seed', function () {
 // Unit test for Worker Customer
 describe('Consumer Worker', function () {
 // set longer timeout
-	this.timeout(700000);
+	this.timeout(800000);
 // define the options for the bean worker
 	let options =
 		{
@@ -282,34 +281,3 @@ describe('Consumer Worker', function () {
 		});
 	});
 });
-/*
-function clearQueue(beanstalkd_tube)
-{
-
-return co(function*(){
-let stats_tube = yield client.stats_tubeAsync(beanstalkd_tube);
-if (stats_tube[0]['current-jobs-ready'] == 0 )
-{
-yield Promise.resolve(true);
-}
-else {
-
-let job_peek = yield client.peek_readyAsync();
-if(job_peek[0]!='NOT_FOUND')
-{
-let job_id_peek = parseInt(job_peek[0].id);
-let job_delete = yield client.deleteJobAsync(job_id_peek);
-//let job_reserve = yield client.reserveAsync(job_id_peek);
-
-}
-yield Promise.delay(500).then(function() {
- clearQueue(beanstalkd_tube);
-});
-}
-
-}).catch(function (err) {
-console.log(err);
-});
-
-};
-*/
