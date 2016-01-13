@@ -33,15 +33,21 @@ module.exports = {
 ### How to use
 ----
 1. Choose the currency `FROM` and `TO` in `producer_worker.js`.
-```
-    let seed = new Seed(config, `FROM`, `TO`, 0, 0);
-````
+	```js
+    	let seed = new Seed(config, `FROM`, `TO`, 0, 0);
+	```
+	
 2. Seed a job into the beanstalk server
-```sh
-$node producer_worker.js
-```
-3.  Run the `worker consumer` in different machines to get the job from beanstalkd server, get the exchange rate form `Yahoo.com` then save into the mongodb.
-```sh
-$node consumer_worker.js
-```
+
+	```sh
+	$node producer_worker.js
+	```
+	
+3. Run the `worker consumer` to get the job from beanstalkd server, to get the exchange rate form `Yahoo.com` then save into the mongodb. The `worker consumer` can be scaling horizontally by running the script on different machines.
+
+	```sh
+	$node consumer_worker.js
+	```
+	
+	
 # jKb6os3150eTAMBtpUm7SQ
