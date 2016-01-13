@@ -260,7 +260,7 @@ describe('Consumer Worker', function () {
 						expect(fail_count).to.equal(2);
 // check the put_fail returned the correct string after 3 fail tries
 						expect(item.put_fail).to.equal('FINISHED ALL ATTEMPTS WITH FAIL AND THE JOB IS BURIED');
-//check the job is BURIED
+// check the job is BURIED
 						done();
 					} else {
 // check the put_fail returned the correct string if the fail count is invalid
