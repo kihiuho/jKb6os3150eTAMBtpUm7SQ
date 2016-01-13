@@ -61,11 +61,10 @@ describe('Seed', function () {
 // get the job id
 					let job_id_seed = yield seed.fail_put();
 // expect the results is equal to 'FINISHED ALL ATTEMPTS WITH FAIL' if the fail attempt is 3 times
-					expect(job_id_seed).to.equal('FINISHED ALL ATTEMPTS WITH FAIL');
+					expect(job_id_seed).to.equal('FINISHED ALL ATTEMPTS WITH FAIL AND THE JOB IS BURIED');
 					done();
 				}).catch(function (err) {
 					winston.error(err);
-					expect(err).to.equal('FAIL PUT ERROR');
 					done();
 				});
 			});
@@ -260,7 +259,8 @@ describe('Consumer Worker', function () {
 // check the fail_count is equal to 2
 						expect(fail_count).to.equal(2);
 // check the put_fail returned the correct string after 3 fail tries
-						expect(item.put_fail).to.equal('FINISHED ALL ATTEMPTS WITH FAIL');
+						expect(item.put_fail).to.equal('FINISHED ALL ATTEMPTS WITH FAIL AND THE JOB IS BURIED');
+//check the job is BURIED
 						done();
 					} else {
 // check the put_fail returned the correct string if the fail count is invalid
